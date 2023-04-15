@@ -1,0 +1,131 @@
+body {
+    background: #fff;
+    color: #666666;
+    font-family: "Open Sans", sans-serif;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/muni.jpg") fixed center center;
+  }
+  
+  .container {
+    justify-content: center;
+    text-align: center;
+    padding-top: 0.5%;
+  }
+  
+  .container .h2 {
+    font-size: 24px;
+    font-family: "Open Sans", sans-serif;
+    margin-top: 0;
+    justify-content: center;
+  }
+  
+  .container label {
+    display: block;
+    margin-bottom: 10px;
+    padding-right: 20px;
+  }
+  
+  .container input.controls {
+    width: 20%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .container .botones  {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .container #bnts  {
+    padding: 10px 20px;
+    background-color: #608227;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5em;
+  }
+  
+  /* Agregamos estilos para hacer los elementos responsive */
+  @media only screen and (max-width: 768px) {
+    .container h2 {
+      font-size: 20px;
+    }
+  
+    .container input.controls {
+      padding: 6px;
+    }
+  
+    .container #btninsert8 {
+      padding: 8px 16px;
+    }
+  }
+  
+  
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto; /* Agregamos margen auto para centrar la tabla en el medio */
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){
+    background-color: white;
+  }
+  
+  th {
+    background-color: #608227;
+    color: white;
+  }
+  
+  /* Agregamos estilos para hacer la tabla responsive */
+  @media only screen and (max-width: 768px) {
+    table {
+      width: 100%;
+    }
+  
+    /* Ocultamos el encabezado de la tabla en pantallas pequeñas */
+    thead {
+      display: none;
+    }
+  
+    /* Cambiamos el estilo de las celdas en pantallas pequeñas */
+    td {
+      display: block;
+      text-align: left;
+    }
+  
+    /* Agregamos estilos para el contenido de las celdas en pantallas pequeñas */
+    td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+  .tipos{
+    display: flex;
+    justify-content: center;
+    padding-top: 0.5%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Espacio entre botones */
+  }
+  .tipos #bnts  {
+    padding: 10px 20px;
+    background-color: #608227;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5em;
+  }
+
+.bnts {
+    width: 100%;
+    max-width: 200px; /* Ancho máximo de los botones */
+    margin-bottom: 10px; /* Espacio entre botones */
+}
