@@ -88,9 +88,9 @@ echo '<script language="javascript">alert("Solicitud enviada con exito \nPor fav
     return $randomString;
 }
 function alerta(){
- echo '<script type="text/javascript">'
-   , 'window.location.href = "index.html";'
-   , '</script>'
+  echo '<script type="text/javascript">'
+  , 'window.location.href = "index.html";'
+  , '</script>'
 ;
 }
 
