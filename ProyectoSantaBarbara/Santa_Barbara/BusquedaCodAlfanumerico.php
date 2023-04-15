@@ -47,8 +47,9 @@
                                     ";
                           }else{
                           $conectar = conn();
-                          $consulta = $conectar->query ("SELECT * FROM solicitud WHERE CodAlfanumerico LIKE '%$busqueda%'");  
-                        while($row = $consulta->fetch_array()){
+                          $consulta = $conectar->query("SELECT * FROM solicitud WHERE CodAlfanumerico ='$busqueda'"); 
+                                            
+                          while($row = $consulta->fetch_array()){
                       ?>
                           <tr>
                             <td><?php echo $row['CodAlfanumerico']?> </td>
