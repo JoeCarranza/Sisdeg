@@ -114,7 +114,7 @@ echo "<h1> Bienvenido $usuario </h1>";
       <div class="row">
         <div class="col-md-6 col-md-push-6 about-content">
 
-          <form class="FormularioQuejaAnonima" method ="post" action="QuejaAnonima.php" enctype="multipart/form-data">
+          <form class="FormularioQuejaAnonima" method ="post" action="InsertarQuejaAnonima_Admi.php" enctype="multipart/form-data">
             <div id ="contenedoor1" class = "contenedor1">
               <div class = "insertar1">
                 <h2>DÉJENOS CONOCER SU QUEJA DE FORMA ANÓNIMA</h2> 
@@ -151,7 +151,7 @@ echo "<h1> Bienvenido $usuario </h1>";
             </div>
           </form>
 
-          <form class="FormularioRecomendacionAnonima" method ="post" action="RecomendacionAnonima.php" enctype="multipart/form-data">
+          <form class="FormularioRecomendacionAnonima" method ="post" action="InsertarRecomendacionAnonima_Admi.php" enctype="multipart/form-data">
             <div id ="contenedoor2" class = "contenedor2">
               <div class = "insertar2">
                 <h2>DÉJENOS CONOCER SU RECOMENDACIÓN DE FORMA ANÓNIMA</h2> 
@@ -186,7 +186,7 @@ echo "<h1> Bienvenido $usuario </h1>";
             </div>
           </form>
           
-          <form class="FormularioQueja" method ="post" action="QuejaNoAnonima.php" enctype="multipart/form-data">
+          <form class="FormularioQueja" method ="post" action="InsertarQueja_Admi.php" enctype="multipart/form-data">
             <div id ="contenedoor3" class = "contenedor3" >
               <br class = "insertar3">
               <h2>DÉJENOS CONOCER SU QUEJA</h2> 
@@ -248,7 +248,7 @@ echo "<h1> Bienvenido $usuario </h1>";
             </div>
           </form>
 
-          <form class="FormularioDenuncia" method ="post" action="Denuncia.php" enctype="multipart/form-data">
+          <form class="FormularioDenuncia" method ="post" action="InsertarDenuncia_Admi.php" enctype="multipart/form-data">
             <div id ="contenedoor4" class = "contenedor4">
               <div class = "insertar4">
                 <h2>DÉJENOS CONOCER SU DENUNCIA</h2> 
@@ -287,7 +287,7 @@ echo "<h1> Bienvenido $usuario </h1>";
             </div>
           </form>
 
-          <form method ="post" action="RecomendacionNoAnonima.php"  enctype="multipart/form-data">
+          <form method ="post" action="InsertarRecomendacion_Admi.php"  enctype="multipart/form-data">
             <div id ="contenedoor5" class = "contenedor5">
               <div class = "insertar5">
                 <h2>DÉJENOS CONOCER SU RECOMENDACIÓN</h2> 
@@ -326,7 +326,7 @@ echo "<h1> Bienvenido $usuario </h1>";
             </div>
           </form>
 
-          <form class="FormularioFelicitacionAnonima" method ="post" action="FelicitacionA.php" enctype="multipart/form-data">
+          <form class="FormularioFelicitacionAnonima" method ="post" action="InsertarFelicitacionAnonima_Admi.php" enctype="multipart/form-data">
             <div id ="contenedoor6" class = "contenedor6" >
               <div class = "insertar6">
                 <h2>DÉJENOS CONOCER SU FELICITACIÓN DE FORMA ANÓNIMA</h2>  
@@ -353,7 +353,7 @@ echo "<h1> Bienvenido $usuario </h1>";
             </div>  
           </form>
 
-          <form class = "FormularioFelicitacion" method ="post" action="FelicitacionNoAnonima.php" enctype="multipart/form-data">
+          <form class = "FormularioFelicitacion" method ="post" action="InsertarFelicitacion_Admi.php" enctype="multipart/form-data">
             <div id ="contenedoor7" class = "contenedor7">
               <div class = "insertar7">
                 <h2>DÉJENOS CONOCER SU FELICITACIÓN</h2> 
@@ -395,280 +395,6 @@ echo "<h1> Bienvenido $usuario </h1>";
               </div>
             </div>
           </form>
-
-          <!--Comienza Formulario de Buscar solicitudes por cedula, cod alfanumerico y tipo de solicitud-->
-          <form action="<?=$_SERVER['PHP_SELF']?>" method ="post"  enctype="multipart/form-data">
-            <div id ="contenedoor8" class = "contenedor8">
-              <div class = "buscar_solicitudes1">
-                <h2>Búsqueda de solicitudes por número de cédula</h2> 
-                <label>Número de cédula</label>
-                <input class="controls" type="number" required data-msg="Por favor digíte el numero de cédula" placeholder="Ej: 201230123" name="BusquedaCedula" id="BusquedaCedula"></input>
-                                    
-                <div class = "botones8"> 
-                  <button type="submit" name="enviar" id="btninsert8" value="Enviar">Buscar</button>
-                </div>
-                <br></br>
-                <br></br>
-                <!--TABLA DE DENUNCIAS-->
-                <h2>Denuncias realizadas</h2>
-                <table class ="table-fill"> 
-                  <thead>
-                    <tr>
-                      <th class = "table-left">Cod Alfanumérico</th>
-                      <th class = "table-left">Tipo</th>
-                      <th class = "table-left">Sitio Creación</th>
-                      <th class = "table-left">Fecha</th>
-                      <th class = "table-left">Nombre</th>
-                      <th class = "table-left">Primer Apellido</th>
-                      <th class = "table-left">Segundo Apellido</th>
-                      <th class = "table-left">Cédula</th>
-                      <th class = "table-left">Teléfono</th>
-                      <th class = "table-left">Correo Electrónico</th>
-                      <th class = "table-left">Dirección Fisica</th>
-                      <th class = "table-left">Descripción</th>
-                      <th class = "table-left">Estado</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                      <?php
-                        if(isset($_POST['enviar'])){
-                          include_once('db.php');
-                          $busqueda = $_POST['BusquedaCedula'];
-                          $conectar = conn();
-                          $consulta = $conectar->query ("SELECT * FROM denuncia WHERE Cedula LIKE '%$busqueda%'");  
-                        while($row = $consulta->fetch_array()){
-                      ?>
-                          <tr>
-                            <td><?php echo $row['CodAlfanumerico']?> </td>
-                            <td><?php echo $row['Tipo']?> </td>
-                            <td><?php echo $row['SitioCreacion']?> </td>
-                            <td><?php echo $row['Fecha']?> </td>
-                            <td><?php echo $row['Nombre']?> </td>
-                            <td><?php echo $row['PrimerApellido']?> </td>
-                            <td><?php echo $row['SegundoApellido']?> </td>
-                            <td><?php echo $row['Cedula']?> </td>
-                            <td><?php echo $row['Telefono']?> </td>
-                            <td><?php echo $row['CorreoElectronico']?> </td>
-                            <td><?php echo $row['DireccionFisica']?> </td>
-                            <td><?php echo $row['Descripcion']?> </td>
-                            <td><?php echo $row['Estado']?> </td>
-                          </tr>
-                        <?php
-                      }
-                        }
-                          ?>
-                        </tbody>
-                      </table>
-                      <br></br>
-                        <br></br>
-
-                      <!--TABLA DE QUEJA NO ANONIMA-->
-                    <h2>Quejas no anónimas realizadas</h2>
-                      <table class ="table-fill"> 
-                        <thead>
-                        <tr>
-                          <th class = "table-left">Fecha</th>
-                          <th class = "table-left">Nombre</th>
-                          <th class = "table-left">Primer Apellido</th>
-                          <th class = "table-left">Segundo Apellido</th>
-                          <th class = "table-left">Cédula</th>
-                          <th class = "table-left">Teléfono</th>
-                          <th class = "table-left">Correo Electrónico</th>
-                          <th class = "table-left">Dirección Fisica</th>
-                          <th class = "table-left">Descripción</th>
-                          <th class = "table-left">Estado</th>
-                          <th class = "table-left">Código alfanumérico</th>
-                          <th class = "table-left">Tipo</th>           
-                          <th class = "table-left">Sitio de Creacion</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                        
-                        
-                        if(isset($_POST['enviar'])){
-                          include_once('db.php');
-                          $busqueda = $_POST['BusquedaCedula'];
-                          
-                          $conectar = conn();
-                          $consulta = $conectar->query ("SELECT * FROM quejanoanonima WHERE Cedula LIKE '%$busqueda%'");  
-                                           
-                  
-                        while($row = $consulta->fetch_array()){
-                          ?>
-                              <tr>
-                                <td><?php echo $row['Fecha']?> </td>
-                                <td><?php echo $row['Nombre']?> </td>
-                                <td><?php echo $row['PrimerApellido']?> </td>
-                                <td><?php echo $row['SegundoApellido']?> </td>
-                                <td><?php echo $row['Cedula']?> </td>
-                                <td><?php echo $row['Telefono']?> </td>
-                                <td><?php echo $row['CorreoElectronico']?> </td>
-                                <td><?php echo $row['DireccionFisica']?> </td>
-                                <td><?php echo $row['Estado']?> </td>
-                                <td><?php echo $row['CodAlfanumerico']?> </td>
-                                <td><?php echo $row['Tipo']?> </td>
-                                <td><?php echo $row['SitioCreacion']?> </td>
-                        </tr>
-                          <?php
-                      }
-                        }
-                          ?>
-                        </tbody>
-                      </table>
-                      <br></br>
-                        <br></br>
-                      <!--TABLA DE Recomendaciones NO ANONIMA-->
-                    <h2>Recomendaciones no anónimas realizadas</h2>
-                      <table class ="table-fill"> 
-                        <thead>
-                        <tr>
-                          <th class = "table-left">Fecha</th>
-                          <th class = "table-left">Nombre</th>
-                          <th class = "table-left">Primer Apellido</th>
-                          <th class = "table-left">Segundo Apellido</th>
-                          <th class = "table-left">Cédula</th>
-                          <th class = "table-left">Teléfono</th>
-                          <th class = "table-left">Correo Electrónico</th>
-                          <th class = "table-left">Destinatario</th>
-                          <th class = "table-left">Motivo</th>
-                          <th class = "table-left">Estado</th>
-                          <th class = "table-left">Archivo Adjunto</th>
-                          <th class = "table-left">Código alfanumérico</th>  
-                          <th class = "table-left">Tipo</th>          
-                          <th class = "table-left">Sitio de Creacion</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                        
-                        
-                        if(isset($_POST['enviar'])){
-                          include_once('db.php');
-                          $busqueda = $_POST['BusquedaCedula'];
-                          
-                          $conectar = conn();
-                          $consulta = $conectar->query ("SELECT * FROM recomendacionnoanonima WHERE Cedula LIKE '%$busqueda%'");  
-                                           
-                  
-                        while($row = $consulta->fetch_array()){
-                          ?>
-                              <tr>
-                                <td><?php echo $row['Fecha']?> </td>
-                                <td><?php echo $row['Nombre']?> </td>
-                                <td><?php echo $row['PrimerApellido']?> </td>
-                                <td><?php echo $row['SegundoApellido']?> </td>
-                                <td><?php echo $row['Cedula']?> </td>
-                                <td><?php echo $row['Telefono']?> </td>
-                                <td><?php echo $row['CorreoElectronico']?> </td>
-                                <td><?php echo $row['Destinatario']?> </td>
-                                <td><?php echo $row['Motivo']?> </td>
-                                <td><?php echo $row['Estado']?> </td>
-                                <td><?php echo $row['ArchivoAdjunto']?> </td>
-                                <td><?php echo $row['CodAlfanumerico']?> </td>
-                                <td><?php echo $row['Tipo']?> </td>
-                                <td><?php echo $row['SitioCreacion']?> </td>
-                        </tr>
-                          <?php
-                      }
-                        }
-                          ?>
-                        </tbody>
-                      </table>
-                     <br></br>
-                     <br></br>
-                      <!--TABLA DE Felicitacion NO ANONIMA-->
-                    <h2>Felicitaciones no anónimas realizadas</h2>
-                      <table class ="table-fill"> 
-                        <thead>
-                        <tr>
-                          <th class = "table-left">Fecha</th>
-                          <th class = "table-left">Nombre</th>
-                          <th class = "table-left">Primer Apellido</th>
-                          <th class = "table-left">Segundo Apellido</th>
-                          <th class = "table-left">Cédula</th>
-                          <th class = "table-left">Teléfono</th>
-                          <th class = "table-left">Correo Electrónico</th>
-                          <th class = "table-left">Destinatario</th>
-                          <th class = "table-left">Motivo</th>
-                          <th class = "table-left">Estado</th>
-                          <th class = "table-left">Archivo Adjunto</th>
-                          <th class = "table-left">Código alfanumérico</th>  
-                          <th class = "table-left">Tipo</th>          
-                          <th class = "table-left">Sitio de Creacion</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                        
-                        if(isset($_POST['enviar'])){
-                          include_once('db.php');
-                          $busqueda = $_POST['BusquedaCedula'];
-                          
-                          $conectar = conn();
-                          $consulta = $conectar->query ("SELECT * FROM felicitacionnoanonima WHERE Cedula LIKE '%$busqueda%'");  
-                                           
-                  
-                        while($row = $consulta->fetch_array()){
-                          ?>
-                              <tr>
-                                <td><?php echo $row['Fecha']?> </td>
-                                <td><?php echo $row['Nombre']?> </td>
-                                <td><?php echo $row['PrimerApellido']?> </td>
-                                <td><?php echo $row['SegundoApellido']?> </td>
-                                <td><?php echo $row['Cedula']?> </td>
-                                <td><?php echo $row['Telefono']?> </td>
-                                <td><?php echo $row['CorreoElectronico']?> </td>
-                                <td><?php echo $row['Destinatario']?> </td>
-                                <td><?php echo $row['Motivo']?> </td>
-                                <td><?php echo $row['Estado']?> </td>
-                                <td><?php echo $row['ArchivoAdjunto']?> </td>
-                                <td><?php echo $row['CodAlfanumerico']?> </td>
-                                <td><?php echo $row['Tipo']?> </td>
-                                <td><?php echo $row['SitioCreacion']?> </td>
-                        </tr>
-                          <?php
-                      }
-                        }
-                          ?>
-                        </tbody>
-                      </table>
-
-                      <br></br>
-                     <br></br>
-                </div>
-                </div>
-                </form>
-
-                <form method ="get" action=""  enctype="multipart/form-data">
-                <div id ="contenedoor9" class = "contenedor9">
-                <div class = "buscar_solicitudes2">
-                    <h2>Búsqueda de solicitudes por código aldanumérico</h2>                  
-                    <label>Código alfanumérico</label>
-                    <input class="controls" type="text" required data-msg="Por favor digíte el código alfanumérico (4 dígitos)" placeholder="Ej: YcP9" name="BusquedaCodAldfamumerico" id="BusquedaCodAldfamumerico">
-                    
-                    <div class = "botones9"> 
-                    <button type="submit" name="submit" id="btninsert9" value="Enviar">Buscar</button>
-                    </div>
-                </div>
-                </div>
-                </form>
-
-                <form method ="post" action="BuscarCedula.php"  enctype="multipart/form-data">
-                <div id ="contenedoor10" class = "contenedor10">
-                <div class = "buscar_solicitudes3">
-                    <h2>Búsqueda de solicitudes por tipo de solicitud</h2>                  
-                    <label>Seleccione el tipo de solicitud que desesa consultar</label>
-                    <input class="controls" type="text" required data-msg="Por favor digíte el código alfanumérico (4 dígitos)" placeholder="Ej: YcP9" name="BusquedaCodAldfamumerico" id="BusquedaCodAldfamumerico">
-                    
-                    <div class = "botones10"> 
-                    <button type="submit" name="enviar" id="btninsert10" value="Enviar">Buscar</button>
-                    </div>
-                </div>
-                </div>
-                </form>
-                    <!--Termina form de buscar solicitudes-->
                   </div>
 
               </div>
