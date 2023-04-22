@@ -56,7 +56,7 @@
                           }else{
                             
                           $conectar = conn();
-                          $consulta = $conectar->query ("SELECT * FROM denuncia WHERE Cedula LIKE '%$busqueda%'");  
+                          $consulta = $conectar->query ("SELECT * FROM denuncia WHERE Cedula = '$busqueda'");  
                         while($row = $consulta->fetch_array()){
                       ?>
                           <tr>
@@ -112,7 +112,7 @@
                           include_once('db.php');
                           $busqueda = $_POST['BusquedaCedula'];
                           $conectar = conn();
-                          $consulta = $conectar->query ("SELECT * FROM quejanoanonima WHERE Cedula LIKE '%$busqueda%'");  
+                          $consulta = $conectar->query ("SELECT * FROM quejanoanonima WHERE Cedula = '$busqueda'");  
                                            
                   
                         while($row = $consulta->fetch_array()){
@@ -168,7 +168,7 @@
                           include_once('db.php');
                           $busqueda = $_POST['BusquedaCedula'];
                           $conectar = conn();
-                          $consulta = $conectar->query ("SELECT * FROM recomendacionnoanonima WHERE Cedula LIKE '%$busqueda%'");  
+                          $consulta = $conectar->query ("SELECT * FROM recomendacionnoanonima WHERE Cedula = '$busqueda'");  
                                            
                   
                         while($row = $consulta->fetch_array()){
@@ -225,8 +225,7 @@
                           include_once('db.php');
                           $busqueda = $_POST['BusquedaCedula'];
                           $conectar = conn();
-                          $consulta = $conectar->query ("SELECT * FROM felicitacionnoanonima WHERE Cedula LIKE '%$busqueda%'");  
-                                           
+                          $consulta = $conectar->query ("SELECT * FROM felicitacionnoanonima WHERE Cedula = '$busqueda'");  
                   
                         while($row = $consulta->fetch_array()){
                           ?>

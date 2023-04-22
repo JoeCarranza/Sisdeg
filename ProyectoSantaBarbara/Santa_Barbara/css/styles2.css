@@ -559,7 +559,10 @@ body {
     
     
   }
-  
+  #about .about-container {
+    background: url(../img/NewLogo.png) left top no-repeat;
+    margin-top: 43px; 
+  }
   #about .about-content {
     background: #fff;
     margin-top: 43px;

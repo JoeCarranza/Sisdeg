@@ -1,7 +1,12 @@
 <?php
 session_start();
 $usuario = $_SESSION['username'];
+
+if(!isset($usuario)){
+  location("location: validar.php");
+}else{
 echo "<h1> Bienvenido $usuario </h1>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -44,7 +49,8 @@ echo "<h1> Bienvenido $usuario </h1>";
   <link href="lib/animate-css/animate.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style2.css" rel="stylesheet">
+  <link href="css/styles2.css" rel="stylesheet">
+
   <!-- SCRIPT PARA EL SWEETALERT-->
   <link rel="stylesheet" href="../Santa_Barbara/plugins/SweetAlert/dist/sweetalert2.min.css">
 </head>
@@ -65,34 +71,35 @@ echo "<h1> Bienvenido $usuario </h1>";
          <li class="menu-active"> <a href="#about">Realizar una solicitud</a>
             <ul>
               <li><a href ="#" onclick = "mostrarQuejaAnonima();">Queja anónima</a></li>
-              <li><a href ="#" onclick = "mostrarQueja();">Queja no anónima</a></li>
+              <li><a href ="#" onclick = "mostrarQueja();">Queja</a></li>
               <li><a href ="#"  onclick = "mostrarDenuncia();">Denuncia</a> </li>
               <li><a href ="#" onclick = "mostrarRecomendacionAnonima();">Recomendación anónima</a></li>
-              <li><a href="#" onclick = "mostrarRecomendacionNoAnonima();">Recomendación no anónima</a></li>
+              <li><a href="#" onclick = "mostrarRecomendacionNoAnonima();">Recomendación</a></li>
               <li><a href="#" onclick = "mostrarFelicitacionAnonima();">Felicitación anónima</a></li>
-              <li><a href="#" onclick="mostrarFelicitacionNoAnonima();">Felicitación no anónima</a></li>
+              <li><a href="#" onclick="mostrarFelicitacionNoAnonima();">Felicitación</a></li>
             </ul>     
           </li>
           <li class="menu-active2"> <a href="#about">Funciones</a>
             <ul>
-              <li><a href ="#" onclick = "">Buscar Solicitudes</a>
+              <li><a>Buscar Solicitudes</a>
                   <ul>
                       <li><a href ="../Santa_Barbara/BusquedaPorCedula.php">Búsqueda por número de cedula</a></li>
                       <li><a href ="../Santa_Barbara/BusquedaCodAlfanumerico.php">Búsqueda por código alfanumérico</a></li>
                       <li><a href ="../Santa_Barbara/BusquedaTipoSolicitud.php">Búsqueda por tipo de solicitud</a></li>
                   </ul>
               </li>
+              <li>
+              <a href="#services">Agregar usuario</a>
+              </li>
             </ul>     
-          </li>
-          <li><a href="#services">Consultar el estado de la solicitud</a></li>
-           
+          </li>           
         </ul>
       </nav>
 
       <nav id="nav-menu-container2">
         <ul class="nav-menu2">  
-          <li><a href="https://www.santabarbara.go.cr/">Contáctenos</a></li>
-          <li><a href="../Santa_Barbara/IniciarSesion.php">Iniciar Sesión</a></li>
+          <li><a href="https://www.santabarbara.go.cr/">Página Principal</a></li>
+          <li><a href="SalirSesion.php">Salir</a></li>
         </ul>  
       </nav>
 
@@ -404,96 +411,6 @@ echo "<h1> Bienvenido $usuario </h1>";
       </div>
     </div>
   </section>
-
-  <!--==========================
-  Services Section
-  ============================-->
-  <section id="services">
-    <div class="container wow fadeInUp">
-      <div class="row">
-          <div class="col-md-12">
-              <h3 class="section-title">CONSULTAR ESTADO DE SU SOLICITUD</h3>
-              <div class="section-title-divider"></div>
-              <p class="section-description1">Dijite su código Alfanumérico para consultar el estado de su solicitud: </p>
-
-
-              <form action="Buscar.php" method="get" >
-                <textarea class="controls1" name="busqueda" id="SitioCreacionFelicitacion"placeholder = "Ejemplo: mS1d"></textarea>
-
-
-                <button class="Botonbus" type="submit" name="enviar" id="btninsert8" value="Buscar">Buscar</button>
-
-
-
-              </form>
-
-              
-          </div>
-      </div>
-
-  
-
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container wow fadeInUp">
-      <div class="row">
-        <div class="col-md-12">
-          <h3 class="section-title">Contáctenos</h3>
-          <div class="section-title-divider"></div>
-          <p class="section-description">Prueba para contacto y establecimiento de input</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3 col-md-push-2">
-          <div class="info">
-            <!--<div>
-              <i class="fa fa-map-marker"></i>
-              <p>A108 Adam Street<br>New York, NY 535022</p>
-            </div>-->
-
-            <div>
-              <i class="fa fa-envelope"></i>
-              <p>info@example.com</p>
-            </div>
-
-            <!--<div>x
-              <i class="fa fa-phone"></i>
-              <p>+1 5589 55488 55s</p>
-            </div>-->
-
-          </div>
-        </div>
-
-        <div class="col-md-5 col-md-push-2">
-          <div class="form">
-            <div id="sendmessage">Your message has been sent. Thank you!</div>
-            <div id="errormessage"></div>
-            <form action="" method="post" role="form" class="contactForm">
-             
-              <div class="form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Tu Email" data-rule="email" data-msg="Ingresa un Correo Valido" />
-                <div class="validation"></div>
-              </div>
-              <!--<div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Por favor ingrese al menos 8 caracteres del tema" />
-                <div class="validation"></div>
-              </div>-->
-              <!--<div class="form-group">
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Por favor escribe algo para nosotros" placeholder="Message"></textarea>
-                <div class="validation"></div>
-              </div>-->
-              <div class="text-center"><button type="submit">Enviar mensaje</button></div>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!--==========================
   Footer
 ============================-->
@@ -502,7 +419,7 @@ echo "<h1> Bienvenido $usuario </h1>";
       <div class="row">
         <div class="col-md-12">
           <div class="copyright">
-           <strong>Sitio Web desarrollado por la Unión Nacional de Gobiernos Locales como parte de las acciones para mejorar la gestión municipal por medio de herramientas tecnológicas </strong>  &copy; 2022 Municipalidad de Santa Bárbara. Todos los derechos reservados
+           <strong>Sitio Web desarrollado por un grupo de estudiantes de la Universidad Nacional de Costa Rica en conjunto con la Municipalidad de Santa Bárbara</strong>  &copy; 2022 Municipalidad de Santa Bárbara. Todos los derechos reservados
           </div>
           <!--<div class="credits">
         
